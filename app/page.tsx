@@ -5,12 +5,24 @@ import { firstBubble, getName, getTableDimension, secondBubble } from "./libs";
 import { USER_NAME } from "./constants";
 import Bubble from "./components/bubble";
 import useGetpx from "./hooks/useGetpx";
+import Table from "./components/table/table";
 
 export default function Home() {
   const imageRef = useRef<HTMLImageElement>(null);
-  const { fontSize, tableThickBorder } = useGetpx(imageRef, {
+  const {
+    firstSvgTop,
+    secondSvgTop,
+    gap,
+    fontSize,
+    tableThickBorder,
+    tableThinBorder,
+  } = useGetpx(imageRef, {
     fontSize: 18,
     tableThickBorder: 3,
+    tableThinBorder: 1,
+    gap: 5,
+    firstSvgTop: 42,
+    secondSvgTop: 23,
   });
   const { tableTop, tableWidth, tableHeight, tableLeft } = getTableDimension();
 
@@ -38,18 +50,19 @@ export default function Home() {
               textSize={fontSize}
               bubble={secondBubble}
             />
-            <div
-              className={`absolute bg-[#F5F3EC] shadow-lg border-[#1B2F49]`}
-              style={{
-                top: `${tableTop}%`,
-                width: `${tableWidth}%`,
-                height: `${tableHeight}%`,
-                left: `${tableLeft}%`,
-                borderWidth: tableThickBorder,
+            <Table
+              {...{
+                tableLeft,
+                tableTop,
+                tableWidth,
+                tableHeight,
+                tableThickBorder,
+                tableThinBorder,
+                gap,
+                firstSvgTop,
+                secondSvgTop,
               }}
-            >
-              <div className={`flex w-full h-full`} style={{}}></div>
-            </div>
+            />
           </>
         )}
       </div>
