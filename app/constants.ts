@@ -16,5 +16,10 @@ export const SECOND_BUBBLE_TEXT_HEIGHT = 48;
 export const SECOND_BUBBLE_X = 24;
 export const SECOND_BUBBLE_Y = 993;
 
+export const TABLE_X = 12;
+export const TABLE_Y = 1380;
+export const TABLE_WIDTH = 351;
+export const TABLE_HEIGHT = 621;
+
 export const DEFAULT_FONT_SIZE = 19; // 원본 이미지에서의 폰트 크기
-export const USER_NAME = "형석";
+export const USER_NAME = "우형석";
