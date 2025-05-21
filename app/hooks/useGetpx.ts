@@ -1,43 +1,57 @@
 import { MAX_WIDTH } from "@/app/constants";
 import { useEffect, useState } from "react";
 
-const useTextSize = (
+type SizeObject = {
+  [key: string]: number;
+};
+
+const useGetpx = (
   imageRef: React.RefObject<HTMLImageElement | null>,
-  textSize: number,
+  sizes: SizeObject,
 ) => {
-  const [fontSize, setFontSize] = useState(textSize);
+  const [pxValues, setPxValues] = useState<SizeObject>(sizes);
 
   useEffect(() => {
-    const updateFontSize = () => {
+    const updateSizes = () => {
       if (imageRef.current) {
         const currentWidth = imageRef.current.width;
         const scaleFactor = currentWidth / MAX_WIDTH;
-        const newTextSize = Math.min(textSize * scaleFactor, textSize);
-        setFontSize(newTextSize);
+
+        const newSizes: SizeObject = {};
+        Object.entries(sizes).forEach(([key, size]) => {
+          newSizes[key] = Math.min(size * scaleFactor, size);
+        });
+
+        setPxValues(newSizes);
       }
     };
+
     if (imageRef.current && imageRef.current.complete) {
-      updateFontSize();
+      updateSizes();
     }
+
     const currentImage = imageRef.current;
     if (currentImage) {
-      currentImage.addEventListener("load", updateFontSize);
+      currentImage.addEventListener("load", updateSizes);
     }
+
     const handleResize = () => {
       if (imageRef.current) {
-        updateFontSize();
+        updateSizes();
       }
     };
+
     window.addEventListener("resize", handleResize);
+
     return () => {
       if (currentImage) {
-        currentImage.removeEventListener("load", updateFontSize);
+        currentImage.removeEventListener("load", updateSizes);
       }
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-  return fontSize;
+  return pxValues;
 };
 
-export default useTextSize;
+export default useGetpx;
