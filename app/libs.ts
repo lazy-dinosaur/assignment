@@ -13,6 +13,10 @@ import {
   SECOND_BUBBLE_WIDTH,
   SECOND_BUBBLE_X,
   SECOND_BUBBLE_Y,
+  TABLE_Y,
+  TABLE_WIDTH,
+  TABLE_HEIGHT,
+  TABLE_X,
 } from "./constants";
 
 export const findCenter = ({
@@ -49,6 +53,16 @@ export const findCenter = ({
     textHeightPercent,
   };
 };
+
+export const getTableDimension = () => {
+  const tableTop = (TABLE_Y / TOTAL_HEIGHT) * 100;
+  const tableWidth = (TABLE_WIDTH / TOTAL_WIDTH) * 100;
+  const tableHeight = (TABLE_HEIGHT / TOTAL_HEIGHT) * 100;
+  const tableLeft = (TABLE_X / TOTAL_WIDTH) * 100;
+  return { tableTop, tableWidth, tableHeight, tableLeft };
+};
+
+export const getName = (string: string) => string.slice(1, 3);
 
 export const firstBubble = findCenter({
   x: FIRST_BUBBLE_X,
