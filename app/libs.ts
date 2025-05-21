@@ -1,4 +1,19 @@
-import { TOTAL_WIDTH, TOTAL_HEIGHT } from "./constants";
+import {
+  TOTAL_WIDTH,
+  TOTAL_HEIGHT,
+  FIRST_BUBBLE_HEIGHT,
+  FIRST_BUBBLE_TEXT_HEIGHT,
+  FIRST_BUBBLE_TEXT_WIDTH,
+  FIRST_BUBBLE_WIDTH,
+  FIRST_BUBBLE_X,
+  FIRST_BUBBLE_Y,
+  SECOND_BUBBLE_HEIGHT,
+  SECOND_BUBBLE_TEXT_HEIGHT,
+  SECOND_BUBBLE_TEXT_WIDTH,
+  SECOND_BUBBLE_WIDTH,
+  SECOND_BUBBLE_X,
+  SECOND_BUBBLE_Y,
+} from "./constants";
 
 export const findCenter = ({
   x,
@@ -34,3 +49,20 @@ export const findCenter = ({
     textHeightPercent,
   };
 };
+
+export const firstBubble = findCenter({
+  x: FIRST_BUBBLE_X,
+  y: FIRST_BUBBLE_Y,
+  width: FIRST_BUBBLE_WIDTH,
+  height: FIRST_BUBBLE_HEIGHT,
+  textWidth: FIRST_BUBBLE_TEXT_WIDTH,
+  textHeight: FIRST_BUBBLE_TEXT_HEIGHT,
+});
+export const secondBubble = findCenter({
+  x: SECOND_BUBBLE_X,
+  y: SECOND_BUBBLE_Y,
+  width: SECOND_BUBBLE_WIDTH,
+  height: SECOND_BUBBLE_HEIGHT,
+  textWidth: SECOND_BUBBLE_TEXT_WIDTH,
+  textHeight: SECOND_BUBBLE_TEXT_HEIGHT,
+});

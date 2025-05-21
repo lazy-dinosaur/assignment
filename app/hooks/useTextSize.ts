@@ -1,3 +1,4 @@
+import { MAX_WIDTH } from "@/app/constants";
 import { useEffect, useState } from "react";
 
 const useTextSize = (
@@ -10,7 +11,7 @@ const useTextSize = (
     const updateFontSize = () => {
       if (imageRef.current) {
         const currentWidth = imageRef.current.width;
-        const scaleFactor = currentWidth / 448;
+        const scaleFactor = currentWidth / MAX_WIDTH;
         const newTextSize = Math.min(textSize * scaleFactor, textSize);
         setFontSize(newTextSize);
       }
