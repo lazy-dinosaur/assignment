@@ -11,12 +11,13 @@ export default function TableComponent() {
 
   return (
     <div
-      className={`absolute bg-[#F5F3EC] shadow-lg border-[#1B2F49] flex items-center flex-col`}
+      className={`absolute bg-[#F5F3EC] border-[#1B2F49] flex items-center flex-col`}
       style={{
         top: `${tableTop}%`,
         width: `${tableWidth}%`,
         left: `${tableLeft}%`,
         borderWidth: tableThickBorder,
+        boxShadow: "0px 4px 4px 0px #00000040",
       }}
     >
       <Borders />

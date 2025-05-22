@@ -31,7 +31,7 @@ const renderCellContent = (
     // SajuCellCharacter
     return (
       <div
-        className={`flex flex-col items-center justify-center ${content.bgColorClass} ${content.textColorClass} shadow-md aspect-square`}
+        className={`flex flex-col items-center justify-center ${content.bgColorClass} ${content.textColorClass} aspect-square`}
         style={{ borderRadius: constants.font14 }}
       >
         <span style={{ fontSize: constants.font8 }}>{content.kor}</span>
