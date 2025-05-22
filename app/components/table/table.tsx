@@ -167,7 +167,7 @@ export default function Table() {
         {Data.map((row, rowIndex) => (
           <tr key={rowIndex} className={`border-r-2`}>
             <td
-              className={`border-y-[2px] border-r-[2px] ${rowIndex == 1 ? "border-b-[#9B9B9B] border-b-[0.5px]" : ""} ${rowIndex == 2 ? "border-t-[#9B9B9B] border-t-[0.5px]" : ""} align-middle`}
+              className={`border-y-[2px] border-r-[2px] ${rowIndex == 1 ? "border-b-[#9B9B9B] border-b-[1px]" : ""} ${rowIndex == 2 ? "border-t-[#9B9B9B] border-t-[1px]" : ""} align-middle`}
             >
               <span
                 className="align-middle font-semibold"
@@ -191,7 +191,7 @@ export default function Table() {
             {columns.map((colKey) => (
               <td
                 key={`${rowIndex}-${colKey}`}
-                className={`border-y-[2px] border-r-[#9B9B9B] border-r-[1px] text-center align-middle bg-white`}
+                className={`border-y-[2px] border-r-[#9B9B9B] border-r-[1px] text-center align-middle bg-white ${rowIndex == 1 ? "border-b-[#9B9B9B] border-b-[1px]" : ""} ${rowIndex == 2 ? "border-t-[#9B9B9B] border-t-[1px]" : ""}`}
                 style={{
                   padding: tableInnerPx,
                 }}
