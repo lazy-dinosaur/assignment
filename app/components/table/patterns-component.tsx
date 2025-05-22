@@ -1,3 +1,5 @@
+import { TOTAL_WIDTH, TOTAL_HEIGHT } from "@/app/constants";
+
 export default function Patters({
   gap,
   firstTop,
@@ -7,6 +9,8 @@ export default function Patters({
   firstTop: number;
   secondTop: number;
 }) {
+  const svgWidth = (56 / TOTAL_WIDTH) * 100;
+  const svgHeight = (38 / TOTAL_HEIGHT) * 100;
   return (
     <>
       <span
@@ -14,16 +18,13 @@ export default function Patters({
         style={{
           left: `${gap}px`,
           top: `${firstTop}px`,
+
+          height: `${svgHeight}%`,
+          width: `${svgWidth}%`,
         }}
       >
-        <svg
-          width="56"
-          height="38"
-          viewBox="0 0 56 38"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g clip-path="url(#clip0_1_131)">
+        <svg viewBox="0 0 56 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clipPath="url(#clip0_1_131)">
             <path
               d="M35.4255 13.9475H52.7512C52.8889 13.9475 53 13.8362 53 13.6983C53 6.14479 46.8654 0 39.3261 0C36.9313 0 34.5763 0.629596 32.5132 1.81902C29.4534 3.58321 27.2178 6.4139 26.2161 9.78946C26.1763 9.9207 26.2526 10.0602 26.3836 10.1001C26.5163 10.1383 26.6539 10.0636 26.6937 9.93233C27.659 6.67969 29.8133 3.952 32.762 2.25093C34.7505 1.1047 37.0192 0.498361 39.3278 0.498361C46.5089 0.498361 52.3681 6.28433 52.5008 13.4491H35.4255C35.2878 13.4491 35.1767 13.5604 35.1767 13.6983C35.1767 13.8362 35.2878 13.9475 35.4255 13.9475Z"
               fill="#BFAF6A"
@@ -78,16 +79,12 @@ export default function Patters({
         style={{
           right: `${gap}px`,
           top: `${secondTop}px`,
+          height: `${svgHeight}%`,
+          width: `${svgWidth}%`,
         }}
       >
-        <svg
-          width="56"
-          height="38"
-          viewBox="0 0 56 38"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g clip-path="url(#clip0_1_148)">
+        <svg viewBox="0 0 56 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clipPath="url(#clip0_1_148)">
             <path
               d="M0.24897 38H27.1009C27.2385 38 27.3496 37.8887 27.3496 37.7508C27.3496 30.1973 21.215 24.0542 13.6741 24.0542C6.13314 24.0542 0.000202179 30.199 0.000202179 37.7508C0.000202179 37.8887 0.111319 38 0.24897 38ZM26.8504 37.5016H0.501057C0.633732 30.3385 6.49302 24.5526 13.6758 24.5526C20.8585 24.5526 26.7178 30.3385 26.8504 37.5016Z"
               fill="#BFAF6A"
