@@ -15,7 +15,7 @@ function HomeContent() {
   const isImageLoaded = useIsImageLoaded();
 
   return (
-    <div className="max-w-md mx-auto bg-[#F3F2EF] w-full">
+    <div className="max-w-md mx-auto bg-[#F3F2EF] w-full pb-30">
       <div className="relative">
         <Image
           ref={imageRef}
@@ -51,4 +51,3 @@ export default function Home() {
     </ResponsiveProvider>
   );
 }
-

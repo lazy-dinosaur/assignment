@@ -6,7 +6,7 @@ import Title from "./title-component";
 import Table from "./table";
 
 export default function TableComponent() {
-  const { tableTop, tableWidth, tableHeight, tableLeft } = getTableDimension();
+  const { tableTop, tableWidth, tableLeft } = getTableDimension();
   const { tableThickBorder } = useScaleValues();
 
   return (
@@ -15,7 +15,6 @@ export default function TableComponent() {
       style={{
         top: `${tableTop}%`,
         width: `${tableWidth}%`,
-        height: `${tableHeight}%`,
         left: `${tableLeft}%`,
         borderWidth: tableThickBorder,
       }}

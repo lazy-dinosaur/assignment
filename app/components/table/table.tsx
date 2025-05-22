@@ -132,6 +132,7 @@ export default function Table() {
     tableFontPy,
     tableFontMd,
     tableFontSm,
+    tableTitleMb,
   } = scaleValues;
 
   return (
@@ -140,6 +141,7 @@ export default function Table() {
       style={{
         width: `${width}%`,
         height: `${height}%`,
+        marginBottom: tableTitleMb,
       }}
     >
       <thead>
