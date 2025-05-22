@@ -3,8 +3,12 @@ import Image from "next/image";
 import { firstBubble, getName, secondBubble } from "./libs";
 import { USER_NAME } from "./constants";
 import Bubble from "./components/bubble";
-import Table from "./components/table/table";
-import { ResponsiveProvider, useImageRef, useIsImageLoaded } from "./contexts/ResponsiveContext";
+import Table from "./components/table/table-component";
+import {
+  ResponsiveProvider,
+  useImageRef,
+  useIsImageLoaded,
+} from "./contexts/ResponsiveContext";
 
 function HomeContent() {
   const imageRef = useImageRef();
@@ -47,3 +51,4 @@ export default function Home() {
     </ResponsiveProvider>
   );
 }
+

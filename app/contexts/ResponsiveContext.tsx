@@ -5,11 +5,16 @@ import useGetpx from "../hooks/useGetpx";
 
 const DEFAULT_SIZES = {
   fontSize: 18,
-  tableThickBorder: 3,
+  tableThickBorder: 4,
   tableThinBorder: 1,
-  gap: 5,
+  gap: 6,
   firstSvgTop: 42,
   secondSvgTop: 23,
+  tableTitleFontSizeSm: 18,
+  tableTitleFontSizeLg: 22,
+  tableTitlePt: 40,
+  tableTitleGap: 8,
+  tableTitleMb: 26,
 };
 
 export type ScaleValues = typeof DEFAULT_SIZES;
@@ -68,4 +73,3 @@ export function useImageRef() {
 export function useIsImageLoaded() {
   return useResponsive().isImageLoaded;
 }
-
