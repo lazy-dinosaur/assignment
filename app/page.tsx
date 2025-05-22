@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useRef } from "react";
-import { firstBubble, getName, getTableDimension, secondBubble } from "./libs";
+import { firstBubble, getName, secondBubble } from "./libs";
 import { USER_NAME } from "./constants";
 import Bubble from "./components/bubble";
 import useGetpx from "./hooks/useGetpx";
@@ -24,7 +24,6 @@ export default function Home() {
     firstSvgTop: 42,
     secondSvgTop: 23,
   });
-  const { tableTop, tableWidth, tableHeight, tableLeft } = getTableDimension();
 
   return (
     <div className="max-w-md mx-auto bg-[#F3F2EF] w-full">
@@ -52,10 +51,6 @@ export default function Home() {
             />
             <Table
               {...{
-                tableLeft,
-                tableTop,
-                tableWidth,
-                tableHeight,
                 tableThickBorder,
                 tableThinBorder,
                 gap,
