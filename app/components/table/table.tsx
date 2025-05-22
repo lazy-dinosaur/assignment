@@ -14,7 +14,6 @@ const renderCellContent = (
   content: Row[keyof Omit<Row, "label" | "subLabel">],
   constants: ScaleValues,
 ) => {
-  const {} = constants;
   if (content === null || content === undefined) return "";
   if (typeof content === "string")
     return (
