@@ -1,24 +1,19 @@
 import { TOTAL_WIDTH, TOTAL_HEIGHT } from "@/app/constants";
+import { useScaleValues } from "@/app/contexts/ResponsiveContext";
 
-export default function Patters({
-  gap,
-  firstTop,
-  secondTop,
-}: {
-  gap: number;
-  firstTop: number;
-  secondTop: number;
-}) {
+export default function Patterns() {
+  const { gap, firstSvgTop, secondSvgTop } = useScaleValues();
+
   const svgWidth = (56 / TOTAL_WIDTH) * 100;
   const svgHeight = (38 / TOTAL_HEIGHT) * 100;
+  
   return (
     <>
       <span
         className="absolute"
         style={{
           left: `${gap}px`,
-          top: `${firstTop}px`,
-
+          top: `${firstSvgTop}px`,
           height: `${svgHeight}%`,
           width: `${svgWidth}%`,
         }}
@@ -44,8 +39,7 @@ export default function Patters({
             <path
               d="M12.4736 23.5559H39.3255C39.4631 23.5559 39.5742 23.4446 39.5742 23.3067C39.5742 15.7532 33.4396 9.61011 25.9003 9.61011C18.3611 9.61011 12.2248 15.7549 12.2248 23.3067C12.2248 23.4446 12.3359 23.5559 12.4736 23.5559ZM39.0734 23.0575H12.724C12.8567 15.8944 18.716 10.1085 25.8987 10.1085C33.0814 10.1085 38.9407 15.8944 39.0734 23.0575Z"
               fill="#BFAF6A"
-            />
-            <path
+            />            <path
               d="M15.6392 23.5559C15.7769 23.5559 15.888 23.4446 15.888 23.3067C15.888 17.7783 20.379 13.2797 25.8984 13.2797C31.4177 13.2797 35.9087 17.7783 35.9087 23.3067C35.9087 23.4446 36.0198 23.5559 36.1575 23.5559C36.2951 23.5559 36.4063 23.4446 36.4063 23.3067C36.4063 17.5042 31.693 12.7814 25.8984 12.7814C20.1037 12.7814 15.3904 17.5025 15.3904 23.3067C15.3904 23.4446 15.5016 23.5559 15.6392 23.5559Z"
               fill="#BFAF6A"
             />
@@ -73,12 +67,11 @@ export default function Patters({
             </clipPath>
           </defs>
         </svg>
-      </span>
-      <span
+      </span>      <span
         className="absolute"
         style={{
           right: `${gap}px`,
-          top: `${secondTop}px`,
+          top: `${secondSvgTop}px`,
           height: `${svgHeight}%`,
           width: `${svgWidth}%`,
         }}

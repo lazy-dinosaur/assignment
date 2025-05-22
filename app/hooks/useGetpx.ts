@@ -1,15 +1,11 @@
 import { MAX_WIDTH } from "@/app/constants";
 import { useEffect, useState } from "react";
 
-type SizeObject = {
-  [key: string]: number;
-};
-
-const useGetpx = (
+const useGetpx = <T extends Record<string, number>>(
   imageRef: React.RefObject<HTMLImageElement | null>,
-  sizes: SizeObject,
-) => {
-  const [pxValues, setPxValues] = useState<SizeObject>(sizes);
+  sizes: T,
+): T => {
+  const [pxValues, setPxValues] = useState<T>(sizes);
 
   useEffect(() => {
     const updateSizes = () => {
@@ -17,10 +13,12 @@ const useGetpx = (
         const currentWidth = imageRef.current.width;
         const scaleFactor = currentWidth / MAX_WIDTH;
 
-        const newSizes: SizeObject = {};
-        Object.entries(sizes).forEach(([key, size]) => {
-          newSizes[key] = Math.min(size * scaleFactor, size);
-        });
+        const newSizes = {} as T;
+        (Object.entries(sizes) as [keyof T, number][]).forEach(
+          ([key, size]) => {
+            newSizes[key] = Math.min(size * scaleFactor, size) as T[keyof T];
+          },
+        );
 
         setPxValues(newSizes);
       }
@@ -34,7 +32,6 @@ const useGetpx = (
     if (currentImage) {
       currentImage.addEventListener("load", updateSizes);
     }
-
     const handleResize = () => {
       if (imageRef.current) {
         updateSizes();
@@ -49,9 +46,10 @@ const useGetpx = (
       }
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [sizes, imageRef]);
 
   return pxValues;
 };
 
 export default useGetpx;
+

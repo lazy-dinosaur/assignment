@@ -1,10 +1,8 @@
-export default function Borders({
-  tableThinBorder,
-  gap,
-}: {
-  tableThinBorder: number;
-  gap: number;
-}) {
+import { useScaleValues } from "@/app/contexts/ResponsiveContext";
+
+export default function Borders() {
+  const { tableThinBorder, gap } = useScaleValues();
+
   return (
     <>
       <div

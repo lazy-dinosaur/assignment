@@ -1,14 +1,15 @@
 import { findCenter } from "@/app/libs";
+import { useScaleValues } from "@/app/contexts/ResponsiveContext";
 
 export default function Bubble({
   bubble,
   text,
-  textSize,
 }: {
   bubble: ReturnType<typeof findCenter>;
   text: string;
-  textSize: number;
 }) {
+  const { fontSize } = useScaleValues();
+
   return (
     <div
       className="absolute text-black flex items-center justify-center bg-red rounded-lg break-keep wrap-break-word"
@@ -23,7 +24,7 @@ export default function Bubble({
       <span
         className="text-center"
         style={{
-          fontSize: textSize,
+          fontSize: fontSize,
           width: `${bubble.textWidthPercent}%`,
           height: `${bubble.textHeightPercent}%`,
         }}

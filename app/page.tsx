@@ -1,29 +1,14 @@
 "use client";
 import Image from "next/image";
-import { useRef } from "react";
 import { firstBubble, getName, secondBubble } from "./libs";
 import { USER_NAME } from "./constants";
 import Bubble from "./components/bubble";
-import useGetpx from "./hooks/useGetpx";
 import Table from "./components/table/table";
+import { ResponsiveProvider, useImageRef, useIsImageLoaded } from "./contexts/ResponsiveContext";
 
-export default function Home() {
-  const imageRef = useRef<HTMLImageElement>(null);
-  const {
-    firstSvgTop,
-    secondSvgTop,
-    gap,
-    fontSize,
-    tableThickBorder,
-    tableThinBorder,
-  } = useGetpx(imageRef, {
-    fontSize: 18,
-    tableThickBorder: 3,
-    tableThinBorder: 1,
-    gap: 5,
-    firstSvgTop: 42,
-    secondSvgTop: 23,
-  });
+function HomeContent() {
+  const imageRef = useImageRef();
+  const isImageLoaded = useIsImageLoaded();
 
   return (
     <div className="max-w-md mx-auto bg-[#F3F2EF] w-full">
@@ -37,30 +22,28 @@ export default function Home() {
           className="w-full h-full"
           priority
         />
-        {fontSize && (
+        {isImageLoaded && (
           <>
             <Bubble
               text={`이제 본격적으로 ${getName(USER_NAME)}님의 사주팔자를 분석해볼 차례네요.`}
-              textSize={fontSize}
               bubble={firstBubble}
             />
             <Bubble
               text={`제가 ${getName(USER_NAME)}님의 사주를 보기 쉽게 표로 정리했어요`}
-              textSize={fontSize}
               bubble={secondBubble}
             />
-            <Table
-              {...{
-                tableThickBorder,
-                tableThinBorder,
-                gap,
-                firstSvgTop,
-                secondSvgTop,
-              }}
-            />
+            <Table />
           </>
         )}
       </div>
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <ResponsiveProvider>
+      <HomeContent />
+    </ResponsiveProvider>
   );
 }
