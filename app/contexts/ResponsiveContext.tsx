@@ -15,6 +15,16 @@ const DEFAULT_SIZES = {
   tableTitlePt: 40,
   tableTitleGap: 8,
   tableTitleMb: 26,
+  tableFontLg: 21,
+  tableFontMd: 14,
+  tableFontSm: 10,
+  font12: 12,
+  font14: 14,
+  font25: 25,
+  font8: 8,
+  tableFontPx: 22.5,
+  tableFontPy: 15,
+  tableInnerPx: 5,
 };
 
 export type ScaleValues = typeof DEFAULT_SIZES;
