@@ -25,4 +25,4 @@ export const TABLE_INNER_HEIGHT = 473.83;
 
 export const DEFAULT_FONT_SIZE = 19; // 원본 이미지에서의 폰트 크기
 export const USER_NAME = "우형석";
-export const USER_DATE = new Date("1993-01-30:04:30");
+export const USER_DATE = new Date("1993-01-30T04:30:00");
