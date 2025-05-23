@@ -1,36 +1,36 @@
-import { useScaleValues } from "@/app/contexts/ResponsiveContext";
+import { useGetScale } from "@/app/contexts/ResponsiveContext";
 
 export default function Borders() {
-  const { tableThinBorder, gap } = useScaleValues();
+  const getScale = useGetScale();
 
   return (
     <>
       <div
         className={`absolute flex h-full`}
         style={{
-          border: `${tableThinBorder}px solid #2B557E`,
-          left: gap,
+          border: `${getScale(1)}px solid #2B557E`,
+          left: getScale(6),
         }}
       />
       <div
         className={`absolute flex h-full`}
         style={{
-          border: `${tableThinBorder}px solid #2B557E`,
-          right: gap,
+          border: `${getScale(1)}px solid #2B557E`,
+          right: getScale(6),
         }}
       />
       <div
         className={`absolute flex w-full`}
         style={{
-          border: `${tableThinBorder}px solid #2B557E`,
-          top: gap,
+          border: `${getScale(1)}px solid #2B557E`,
+          top: getScale(6),
         }}
       />
       <div
         className={`absolute flex w-full`}
         style={{
-          border: `${tableThinBorder}px solid #2B557E`,
-          bottom: gap,
+          border: `${getScale(1)}px solid #2B557E`,
+          bottom: getScale(6),
         }}
       />
     </>

@@ -7,19 +7,19 @@ import {
 import { Data, Row } from "./data";
 
 import React from "react";
-import { ScaleValues, useScaleValues } from "@/app/contexts/ResponsiveContext";
+import { useGetScale } from "@/app/contexts/ResponsiveContext";
 
 // 셀 내용 렌더링을 위한 헬퍼 함수
 const renderCellContent = (
   content: Row[keyof Omit<Row, "label" | "subLabel">],
-  constants: ScaleValues,
+  getScale: (value: number) => number,
 ) => {
   if (content === null || content === undefined) return "";
   if (typeof content === "string")
     return (
       <span
         style={{
-          fontSize: constants.font12,
+          fontSize: getScale(12),
         }}
       >
         {content}
@@ -31,13 +31,13 @@ const renderCellContent = (
     return (
       <div
         className={`flex flex-col items-center justify-center ${content.bgColorClass} ${content.textColorClass} aspect-square`}
-        style={{ borderRadius: constants.font14 }}
+        style={{ borderRadius: getScale(14) }}
       >
-        <span style={{ fontSize: constants.font8 }}>{content.kor}</span>
+        <span style={{ fontSize: getScale(8) }}>{content.kor}</span>
         <span
           className="font-semibold"
           style={{
-            fontSize: constants.font25,
+            fontSize: getScale(25),
             lineHeight: 1.2,
           }}
         >
@@ -46,7 +46,7 @@ const renderCellContent = (
         <span
           className=""
           style={{
-            fontSize: constants.font8,
+            fontSize: getScale(8),
           }}
         >
           {content.sub}
@@ -64,7 +64,7 @@ const renderCellContent = (
             <span
               className="font-semibold"
               style={{
-                fontSize: constants.tableFontMd,
+                fontSize: getScale(14),
               }}
             >
               {item.text}
@@ -73,7 +73,7 @@ const renderCellContent = (
               <span
                 className="block"
                 style={{
-                  fontSize: constants.tableFontSm,
+                  fontSize: getScale(10),
                 }}
               >
                 {item.subText}
@@ -92,7 +92,7 @@ const renderCellContent = (
         <span
           className="font-semibold"
           style={{
-            fontSize: constants.tableFontMd,
+            fontSize: getScale(14),
           }}
         >
           {content.text}
@@ -101,7 +101,7 @@ const renderCellContent = (
           <span
             className="block"
             style={{
-              fontSize: constants.tableFontSm,
+              fontSize: getScale(10),
             }}
           >
             {content.subText}
@@ -123,16 +123,8 @@ export default function Table() {
     "year",
   ];
   const columnHeaders = ["時", "日", "月", "年"];
-  const scaleValues = useScaleValues();
-  const {
-    tableInnerPx,
-    tableFontLg,
-    tableFontPx,
-    tableFontPy,
-    tableFontMd,
-    tableFontSm,
-    tableTitleMb,
-  } = scaleValues;
+
+  const getScale = useGetScale();
 
   return (
     <table
@@ -140,21 +132,21 @@ export default function Table() {
       style={{
         width: `${width}%`,
         height: `${height}%`,
-        marginBottom: tableTitleMb,
+        marginBottom: getScale(26),
       }}
     >
       <thead>
-        <tr className="" style={{ fontSize: tableFontLg }}>
+        <tr className="" style={{ fontSize: getScale(21) }}>
           <th className=""></th>
           {columnHeaders.map((header, idx) => (
             <th
               key={header}
               className={`border-x-[1px] border-[#8B8B8B] ${idx == 0 ? "border-l-black border-l-[2px]" : ""} ${idx == columnHeaders.length - 1 ? "border-r-black border-r-[2px]" : ""}`}
               style={{
-                paddingLeft: tableFontPx / 2,
-                paddingRight: tableFontPx / 2,
-                paddingBottom: tableFontPy / 2,
-                paddingTop: tableFontPy / 2,
+                paddingLeft: getScale(22.5) / 2,
+                paddingRight: getScale(22.5) / 2,
+                paddingBottom: getScale(15) / 2,
+                paddingTop: getScale(15) / 2,
               }}
             >
               {header}
@@ -171,7 +163,7 @@ export default function Table() {
               <span
                 className="align-middle font-semibold"
                 style={{
-                  fontSize: tableFontMd,
+                  fontSize: getScale(14),
                 }}
               >
                 {row.label}
@@ -180,7 +172,7 @@ export default function Table() {
                 <span
                   className="block"
                   style={{
-                    fontSize: tableFontSm,
+                    fontSize: getScale(10),
                   }}
                 >
                   {row.subLabel}
@@ -192,10 +184,10 @@ export default function Table() {
                 key={`${rowIndex}-${colKey}`}
                 className={`border-y-[2px] border-r-[#9B9B9B] border-r-[1px] text-center align-middle bg-white ${rowIndex == 1 ? "border-b-[#9B9B9B] border-b-[1px]" : ""} ${rowIndex == 2 ? "border-t-[#9B9B9B] border-t-[1px]" : ""}`}
                 style={{
-                  padding: tableInnerPx,
+                  padding: getScale(5),
                 }}
               >
-                {renderCellContent(row[colKey], scaleValues)}
+                {renderCellContent(row[colKey], getScale)}
               </td>
             ))}
           </tr>

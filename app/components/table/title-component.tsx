@@ -1,26 +1,20 @@
 import { USER_DATE, USER_NAME } from "@/app/constants";
-import { useScaleValues } from "@/app/contexts/ResponsiveContext";
+import { useGetScale } from "@/app/contexts/ResponsiveContext";
 
 export default function Title() {
-  const {
-    tableTitleFontSizeSm,
-    tableTitleFontSizeLg,
-    tableTitlePt,
-    tableTitleMb,
-    tableTitleGap,
-  } = useScaleValues();
+  const getScale = useGetScale();
   return (
     <div
       className={`text-[#424242] flex flex-col items-center`}
       style={{
-        paddingTop: `${tableTitlePt}px`,
-        marginBottom: `${tableTitleMb}px`,
+        paddingTop: `${getScale(40)}px`,
+        marginBottom: `${getScale(26)}px`,
       }}
     >
       <h4
         style={{
-          fontSize: `${tableTitleFontSizeSm}px`,
-          marginBottom: `${tableTitleGap}px`,
+          fontSize: `${getScale(18)}px`,
+          marginBottom: `${getScale(8)}px`,
         }}
       >
         {USER_NAME}님의 사주
@@ -28,7 +22,7 @@ export default function Title() {
       <h2
         className="font-bold"
         style={{
-          fontSize: `${tableTitleFontSizeLg}px`,
+          fontSize: `${getScale(22)}px`,
         }}
       >
         {USER_DATE.getFullYear()}년 {USER_DATE.getMonth() + 1}월{" "}

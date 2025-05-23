@@ -1,13 +1,13 @@
 import { getTableDimension } from "@/app/libs";
 import Borders from "./border-component";
 import Patterns from "./patterns-component";
-import { useScaleValues } from "@/app/contexts/ResponsiveContext";
+import { useGetScale } from "@/app/contexts/ResponsiveContext";
 import Title from "./title-component";
 import Table from "./table";
 
 export default function TableComponent() {
   const { tableTop, tableWidth, tableLeft } = getTableDimension();
-  const { tableThickBorder } = useScaleValues();
+  const getScale = useGetScale();
 
   return (
     <div
@@ -16,7 +16,7 @@ export default function TableComponent() {
         top: `${tableTop}%`,
         width: `${tableWidth}%`,
         left: `${tableLeft}%`,
-        borderWidth: tableThickBorder,
+        borderWidth: getScale(4),
         boxShadow: "0px 4px 4px 0px #00000040",
       }}
     >

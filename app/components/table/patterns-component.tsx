@@ -1,8 +1,8 @@
 import { TABLE_WIDTH, TABLE_HEIGHT } from "@/app/constants";
-import { useScaleValues } from "@/app/contexts/ResponsiveContext";
+import { useGetScale } from "@/app/contexts/ResponsiveContext";
 
 export default function Patterns() {
-  const { gap, firstSvgTop, secondSvgTop } = useScaleValues();
+  const getScale = useGetScale();
 
   const svgWidth = (56 / TABLE_WIDTH) * 100;
   const svgHeight = (38 / TABLE_HEIGHT) * 100;
@@ -12,8 +12,8 @@ export default function Patterns() {
       <span
         className="absolute"
         style={{
-          left: `${gap + 2}px`,
-          top: `${firstSvgTop}px`,
+          left: `${getScale(6) + 2}px`,
+          top: `${getScale(42)}px`,
           height: `${svgHeight}%`,
           width: `${svgWidth}%`,
         }}
@@ -72,8 +72,8 @@ export default function Patterns() {
       <span
         className="absolute"
         style={{
-          right: `${gap + 2}px`,
-          top: `${secondSvgTop}px`,
+          right: `${getScale(6) + 2}px`,
+          top: `${getScale(23)}px`,
           height: `${svgHeight}%`,
           width: `${svgWidth}%`,
           marginTop: 1,

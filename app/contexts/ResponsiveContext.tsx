@@ -3,36 +3,11 @@
 import { createContext, useContext, useRef, useMemo, ReactNode } from "react";
 import useGetpx from "../hooks/useGetpx";
 
-const DEFAULT_SIZES = {
-  fontSize: 18,
-  tableThickBorder: 4,
-  tableThinBorder: 1,
-  gap: 6,
-  firstSvgTop: 42,
-  secondSvgTop: 23,
-  tableTitleFontSizeSm: 18,
-  tableTitleFontSizeLg: 22,
-  tableTitlePt: 40,
-  tableTitleGap: 8,
-  tableTitleMb: 26,
-  tableFontLg: 21,
-  tableFontMd: 14,
-  tableFontSm: 10,
-  font12: 12,
-  font14: 14,
-  font25: 25,
-  font8: 8,
-  tableFontPx: 22.5,
-  tableFontPy: 15,
-  tableInnerPx: 5,
-};
-
-export type ScaleValues = typeof DEFAULT_SIZES;
-
 interface ResponsiveContextType {
-  scaleValues: ScaleValues;
+  getScale: (originalSize: number) => number;
   imageRef: React.RefObject<HTMLImageElement | null>;
   isImageLoaded: boolean;
+  scaleFactor: number;
 }
 
 const ResponsiveContext = createContext<ResponsiveContextType | null>(null);
@@ -43,20 +18,18 @@ interface ResponsiveProviderProps {
 
 export function ResponsiveProvider({ children }: ResponsiveProviderProps) {
   const imageRef = useRef<HTMLImageElement>(null);
-  const scaleValues = useGetpx(imageRef, DEFAULT_SIZES);
-
-  const isImageLoaded = useMemo(() => {
-    return Object.values(scaleValues).some((value) => value > 0);
-  }, [scaleValues]);
+  const { getScale, isImageLoaded, scaleFactor } = useGetpx(imageRef);
 
   const contextValue = useMemo(
     () => ({
-      scaleValues,
+      getScale,
       imageRef,
       isImageLoaded,
+      scaleFactor,
     }),
-    [scaleValues, isImageLoaded],
+    [getScale, isImageLoaded, scaleFactor],
   );
+
   return (
     <ResponsiveContext.Provider value={contextValue}>
       {children}
@@ -72,8 +45,8 @@ export function useResponsive() {
   return context;
 }
 
-export function useScaleValues() {
-  return useResponsive().scaleValues;
+export function useGetScale() {
+  return useResponsive().getScale;
 }
 
 export function useImageRef() {
@@ -82,4 +55,8 @@ export function useImageRef() {
 
 export function useIsImageLoaded() {
   return useResponsive().isImageLoaded;
+}
+
+export function useScaleFactor() {
+  return useResponsive().scaleFactor;
 }

@@ -1,40 +1,36 @@
 import { MAX_WIDTH } from "@/app/constants";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
-const useGetpx = <T extends Record<string, number>>(
-  imageRef: React.RefObject<HTMLImageElement | null>,
-  sizes: T,
-): T => {
-  const [pxValues, setPxValues] = useState<T>(sizes);
+const useGetpx = (imageRef: React.RefObject<HTMLImageElement | null>) => {
+  const [scaleFactor, setScaleFactor] = useState<number>(1);
+  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
+
+  const getScale = useCallback((originalSize: number): number => {
+    return Math.min(originalSize * scaleFactor, originalSize);
+  }, [scaleFactor]);
 
   useEffect(() => {
-    const updateSizes = () => {
+    const updateScale = () => {
       if (imageRef.current) {
         const currentWidth = imageRef.current.width;
-        const scaleFactor = currentWidth / MAX_WIDTH;
-
-        const newSizes = {} as T;
-        (Object.entries(sizes) as [keyof T, number][]).forEach(
-          ([key, size]) => {
-            newSizes[key] = Math.min(size * scaleFactor, size) as T[keyof T];
-          },
-        );
-
-        setPxValues(newSizes);
+        const newScaleFactor = currentWidth / MAX_WIDTH;
+        setScaleFactor(newScaleFactor);
+        setIsImageLoaded(true);
       }
     };
 
     if (imageRef.current && imageRef.current.complete) {
-      updateSizes();
+      updateScale();
     }
 
     const currentImage = imageRef.current;
     if (currentImage) {
-      currentImage.addEventListener("load", updateSizes);
+      currentImage.addEventListener("load", updateScale);
     }
+
     const handleResize = () => {
       if (imageRef.current) {
-        updateSizes();
+        updateScale();
       }
     };
 
@@ -42,14 +38,13 @@ const useGetpx = <T extends Record<string, number>>(
 
     return () => {
       if (currentImage) {
-        currentImage.removeEventListener("load", updateSizes);
+        currentImage.removeEventListener("load", updateScale);
       }
       window.removeEventListener("resize", handleResize);
     };
-  }, [sizes, imageRef]);
+  }, [imageRef]);
 
-  return pxValues;
+  return { getScale, isImageLoaded, scaleFactor };
 };
 
 export default useGetpx;
-
